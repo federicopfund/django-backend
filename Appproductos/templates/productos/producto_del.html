@@ -1,0 +1,29 @@
+{% extends 'tiendaApp/base.html' %} 
+
+{% load static %} 
+
+
+{% block content %}
+
+<div clas="col-12 col-md-6 offset-md-3">
+<form method="POST" class="form-inline ">
+    {% csrf_token %}
+    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="card border-left-danger shadow h-100 py-2" style="margin-left: auto; margin-right: auto;">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">¿Eliminar {{ obj.descripcion }}?</div>
+                <button type="submit" class="btn btn-danger"><i class="far fa-question-circle"></i>Si, Eliminar</button>
+                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-success"><span class="fa fa-undo"></span>Cancelar</a>
+              </div>
+              <div class="col-auto">
+                <i class="far fa-question-circle fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+<html>
+
+<head>
+
+    {% load static %}
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'tiendaApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'tiendaApp/vendor/font-awesome\css\font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+
+
+    <!-- Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+
+    <!-- Styles -->
+    <link href="{% static 'tiendaApp/css/gestion.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <a class="navbar-brand" href="{% url 'Productos' %}">
+            <img src="{% static 'tiendaApp/img/logo4.png' %}" alt="" width="180" height="140"></a>
+
+
+        {% if user.is_authenticated %}
+
+        <div class="collapse navbar-collapse justify-content-end" id="nav-content">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color:white;">Bienvenido, {{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-success me-2" href="{% url 'logout' %}">
+                        <span class="fas fa-sign-in-alt"></span>Logout</a>
+                </li>
+                {% if not user.is_staff %}
+                <li class="nav-item">
+                    <a class="btn btn-outline-success me-2" href="{% url 'Appcarro:carro' %}">
+        Carrito<span class="fas fa-shopping-cart"></span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% else %}
+        <div class="collapse navbar-collapse justify-content-end" id="nav-content">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-outline-success me-2" href="{% url 'login' %}">
+                        <span class="fas fa-user"></span>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-success me-2" href="{% url 'Appusuarios:registrarse' %}">
+                        <span class="fas fa-user-plus"></span>Registro</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
+    </nav>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'Productos' %}">Tienda Jaguarete KAA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'Productos' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-uppercase text-expanded" href="" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            {% for categoria in categorias %}
+                            <li><a class="dropdown-item" href="{% url 'Categoria' categoria.id %}">{{ categoria.nombre }}</a></li>
+                            {% endfor %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'Buscar' %}">Busqueda</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item {% if request.path == '/acercade/' %}active{% endif %} px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'AcercaDe' %}">Acerca de...</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/contacto/' %}active{% endif %} px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="mailto:jaguarete.SA@jaguarete.com">Contacto</a>
+                    </li>
+                    {% if user.is_staff %}
+                    <li class="nav-item {% if request.path == '/nuevoProducto/' %}active{% endif %} px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'producto_new' %}">Nuevo Producto</a>
+                    </li>
+                    {% endif %}
+
+
+                    <li>
+                        <form class="d-flex" action="/buscar/?q=">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q" value="{{ query|escape }}" method="get">
+                            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+
+                        </form>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Contenido cambiante-->
+    {% block content %} {% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="footer text-center text-white d-none d-lg-block">
+        <div class="container">
+            <p class="m-0 mbt">JAGUARETE KAA S.A</p>
+            <p class="m-0 mbt1">&copy; Pfund Federico</p>
+
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'tiendaApp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'tiendaApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'tiendaApp/vendor/jquery/navMenu.js' %}"></script>
+    <script src="{% static 'tiendaApp/vendor/font-awesome/js/all.min.js' %}"></script>
+
+</body>
+
+
+
+</html>

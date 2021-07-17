@@ -1,0 +1,83 @@
+{% extends 'tiendaApp/base.html' %} 
+
+{% load static %} 
+
+
+{% block content %}
+
+
+<form method="POST" class="form-floating mb-12" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {% if obj %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {% else %}
+            <div class="card border-left-success shadow h-100 py-2">
+                {% endif %}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Producto
+                            </div>
+                            <div class="dropdown-divider"></div>
+                           
+                        <div class="container-fluid">                            
+                            <div class="row mb-3 ">
+                                    <div class="col-md-12 themed-grid-col">Producto</div>
+                                    <div class="col-md-12 themed-grid-col">{{form.nombre}}</div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="col-6 ">
+                                    <div class="col-12 ">{{form.imagen.label}}</div>
+                                    <div class="col-12 ">{{form.imagen}}</div>
+                                </div>
+                                <div class="col-6 ">
+                                    <div class="col-12 ">{{form.categorias}}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="col-12"></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="col-12">{{form.descripcion}}</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="col-6">
+                                    <div class="col-12"></div>
+                                </div>
+                                    <div class="col-6 col-md-3 themed-grid-col">{{form.precio.label}} {{form.precio}}</div> 
+                                    <div class="col-6 col-md-3 themed-grid-col">
+                                    <br>
+                                    {% if obj %}
+                                        <a href="{% url 'producto_del' obj.id %}" class="btn btn-danger"><span class="fa fa-trash-alt"></span>Borrar</a>
+                                        <button class="btn btn-warning" href="{% url 'producto_edit' obj.id %}"><span class="fa fa-edit"></span>Editar</button>
+                                    {% else %}
+                                    <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Crear</button>
+                                    {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+  
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+{% extends 'tiendaApp/base.html' %} 
+
+{% load static %} 
+
+{% block content %}
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      
+        <span class="site-heading-lower">Buscar productos</span>
+
+      </h1>
+
+
+  <div>
+  
+  <form class="form-inline" style="margin-left: auto; margin-right:auto; width: 300px;">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q" value="{{ query|escape }}" method="get">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+
+
+  </form>
+
+  </div>
+
+  {% if query %}
+    <h2 class="site-heading text-center text-white d-none d-lg-block">Resultados para "{{ query|escape }}":</h2>
+
+    {% if results %}
+
+    <div class="container">
+
+    <div class="row">
+
+        <table class="table table-sm table-dark">
+            <thead>
+            <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Enlace</th>
+            </tr>
+        </thead>
+      {% for producto in results %}
+
+        <tbody>
+
+            <tr>
+            <th scope="row">{{ producto.nombre }}</th>
+            <th scope="row">{{ producto.descripcion}}</th>
+            <th scope="row">{{ producto.precio|floatformat:2 }}&nbsp;€</th>
+            <th scope="row"><a href="{% url 'Producto_detalle' producto.id %}" class="btn btn-success">Ver</a></th>
+            </tr>
+        </tbody>
+        {% endfor %} 
+        </table>
+    </div>
+</div>
+    {% else %}
+      <p class="site-heading text-center text-white d-none d-lg-block">No hay resultados</p>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}

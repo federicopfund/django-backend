@@ -1,0 +1,82 @@
+{% extends 'tiendaApp/base.html' %} 
+
+{% load static %} 
+
+{% block content %}
+
+
+<div class="container">
+
+    
+
+    <div class="row">
+
+
+{% for producto in productos %}
+
+        <div class="col-md-4">
+        
+
+            <div class="card" style="width: 100%; margin: 15px 15px;">
+
+                <img src="{{ producto.imagen.url }}" class="card-img-top">
+
+                <div class="card-body" style="text-align: center;">
+
+                    <h7 class="card-title">{{ producto.nombre }}</h7>
+
+                    <p class="card-text">{{ producto.precio|floatformat:2 }}&nbsp;€ </p>
+                    
+                    
+                </div>
+
+                    <div class="card-footer text-center">
+                        <a href="{% url 'Producto_detalle' producto.id %}" class="btn btn-success">Ver</a>
+                    </div>
+                
+            </div>
+
+        </div>
+
+
+{% endfor %} 
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Detalles</th>            
+            </tr>
+            </thead>
+        
+        {% for producto in resto_productos %}
+
+        <tbody>
+
+            <tr>
+            <th scope="row">{{ producto.nombre }}</th>
+            <th scope="row">{{ producto.descripcion }}</th>
+            <th scope="row">{{ producto.precio|floatformat:2 }}&nbsp;€</th>
+            <th scope="row"><a href="{% url 'Producto_detalle' producto.id %}" class="btn btn-success">Ver</a></th>
+            </tr>
+
+
+        </tbody>
+        {% endfor %} 
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+{% endblock %}

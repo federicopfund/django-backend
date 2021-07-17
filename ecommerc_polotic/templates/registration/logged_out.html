@@ -1,0 +1,28 @@
+{% extends "registration/layout.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+<section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'tiendaApp/img/principal.jpg' %}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h6 class="section-heading mb-4" >
+  
+
+          <p>Has sido desconectado.</p>
+
+          <a href="{% url 'login'%}">Click aqui para volver a acceder.</a>
+
+            </h6>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+{% endblock %}
