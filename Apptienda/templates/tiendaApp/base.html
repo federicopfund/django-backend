@@ -7,12 +7,12 @@
 
     <!-- Bootstrap -->
     <link href="{% static 'tiendaApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'tiendaApp/vendor/font-awesome\css\font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'tiendaApp/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
 
 
     <!-- Fonts -->
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
@@ -26,7 +26,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-light">
         <a class="navbar-brand" href="{% url 'Productos' %}">
-            <img src="{% static 'tiendaApp/img/logo4.png' %}" alt="" width="180" height="140"></a>
+            <img src="{% static 'tiendaApp/img/logo4.png' %}" alt="" width="140" height="70"></a>
 
 
         {% if user.is_authenticated %}
@@ -125,7 +125,7 @@
     <!-- Footer -->
     <footer class="footer text-center text-white d-none d-lg-block">
         <div class="container">
-            <p class="m-0 mbt">JAGUARETE KAA S.A</p>
+            <p class="m-0 mbt">JAGUARETE</p>
             <p class="m-0 mbt1">&copy; Pfund Federico</p>
 
 
