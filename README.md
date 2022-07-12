@@ -81,7 +81,8 @@
               
         > Vaya al directorio Script dentro de env_site y active el entorno virtual:
               
-              cd Script
+              cd Scripts
+              
         > Activar:
         
               activate
