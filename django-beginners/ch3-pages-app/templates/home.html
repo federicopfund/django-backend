@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Home</h1>
+<h1>Message board homepage</h1>
+<ul>
+  {% for publicacion in  publicacion_list %}
+    <li>{{ publicacion.text }}</li>
+  {% endfor %}
+</ul>
 {% endblock content %}
+

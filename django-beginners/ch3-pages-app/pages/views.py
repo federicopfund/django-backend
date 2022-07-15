@@ -1,8 +1,10 @@
 from django.views.generic import TemplateView
-
+from .models import Publicacion
 
 class HomePageView(TemplateView):
+    model =  Publicacion
     template_name = "home.html"
+
 
 
 class AboutPageView(TemplateView):  # new

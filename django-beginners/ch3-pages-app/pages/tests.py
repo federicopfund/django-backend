@@ -1,6 +1,6 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase,TestCase
 from django.urls import reverse
-
+from .models import  Publicacion
 
 class HomepageTests(SimpleTestCase):
     def test_url_exists_at_correct_location(self):
@@ -104,3 +104,21 @@ class SimulacionesPageView(SimpleTestCase):
     def test_template_content(self):  # new
         response = self.client.get(reverse("simulaciones"))
         self.assertContains(response, "<h1>Simulaciones Empresariales</h1>")
+
+class PublicacionTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.publicacion = Publicacion.objects.create(text="Esto es un test!")
+
+    def test_model_content(self):
+        self.assertEqual(self.publicacion.text, "Esto es un test!")
+
+    def test_url_exists_at_correct_location(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_homepage(self):  # new homepage test
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "home.html")
+        self.assertContains(response, "Esto es un test!")
